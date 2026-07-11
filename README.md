@@ -25,6 +25,35 @@ val wb   = Psychro.wetBulb {tC=30.0, rh=0.5, pressurePa=101325.0}  (* ~22 C *)
 val h    = Psychro.enthalpyMoist {tC=25.0, w=0.01}  (* ~50.6 kJ/kg *)
 ```
 
+`make example` builds and runs [`examples/demo.sml`](examples/demo.sml), which
+exercises all six functions above -- saturation vapor pressure over a range of
+dry-bulb temperatures, a dew-point/relative-humidity round trip, humidity
+ratio, wet-bulb temperature, and moist-air enthalpy (output is byte-identical
+under MLton and Poly/ML):
+
+```
+Saturation vapor pressure (Magnus formula):
+  satVaporPressure(0.0C) = 611.20 Pa
+  satVaporPressure(20.0C) = 2332.60 Pa
+  satVaporPressure(30.0C) = 4233.72 Pa
+  satVaporPressure(100.0C) = 103844.92 Pa
+
+Dew point from relative humidity:
+  rhToDewPoint {tC=20.0, rh=0.5} = 9.255 C
+
+Relative humidity from dew point (round-trip check):
+  dewPointToRh {tC=20.0, dewC=9.255} = 0.5000
+
+Humidity ratio at sea-level pressure:
+  humidityRatio {tC=25.0, rh=0.5, pressurePa=101325.0} = 0.009853 kg/kg
+
+Wet-bulb temperature (Sprung equation, bisection):
+  wetBulb {tC=30.0, rh=0.5, pressurePa=101325.0} = 23.18 C
+
+Moist-air enthalpy:
+  enthalpyMoist {tC=25.0, w=0.009853} = 50.250 kJ/kg
+```
+
 ## Scope and limitations
 
 - Saturation vapor pressure uses the **Magnus formula** (accurate to ~0.1% for 0..60 °C; ~2% error near 100 °C).
