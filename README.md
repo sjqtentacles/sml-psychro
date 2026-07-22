@@ -1,5 +1,7 @@
 # sml-psychro
 
+[![CI](https://github.com/sjqtentacles/sml-psychro/actions/workflows/ci.yml/badge.svg)](https://github.com/sjqtentacles/sml-psychro/actions/workflows/ci.yml)
+
 Zero-dependency Standard ML library for **psychrometric calculations**: saturation vapor pressure, dew point, humidity ratio, wet-bulb temperature (Sprung formula), and moist-air enthalpy.
 
 ## API
